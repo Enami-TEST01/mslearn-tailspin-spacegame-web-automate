@@ -108,9 +108,10 @@ stages:
   - deployment: Deploy
     dependsOn: Provision
     variables:
-      # Enami add "を置換して取り除く
+      # Enami add Start "を置換して取り除きたいが、うまく行かない。。。
       WebAppNameDev-double-quate: $[ dependencies.Provision.outputs['RunTerraform.WebAppNameDev'] ]
       WebAppNameDev: ${{ replace('$(WebAppNameDev-double-quate)','\"','')}}
+      # Enami add End "を置換して取り除きたいが、うまく行かない。。。
     pool:
       vmImage: 'ubuntu-18.04'
     environment: dev
@@ -126,6 +127,7 @@ stages:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               deployToSlotOrASE: false
               resourceGroupName: 'tailspin-space-game-terraform-rg'
-              appName: '$(WebAppNameDev)'
-              # appName: 'tailspin-space-game-web-dev-7211'
+              # appName: '$(WebAppNameDev)'
+              # appName: '$(replace('$(WebAppNameDev-double-quate)', '"', ''))'
+              appName: 'tailspin-space-game-web-dev-7211'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
