@@ -83,7 +83,7 @@ stages:
         # Write terraform.tfvars.
         echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform.tfvars
         # Write backend.tfvars.
-        echo 'resource_group_name = "tailspin-space-game-terraform-rg"' | tee backend.tfvars
+        echo 'resource_group_name = "enami-terraform-management-storage-rg"' | tee backend.tfvars
         echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend.tfvars
         echo 'container_name = "terraformstate"' | tee -a backend.tfvars
         echo 'key = "terraform.tfstate"' | tee -a backend.tfvars
@@ -96,7 +96,7 @@ stages:
         # Get the App Service name for the dev environment.
         WebAppNameDev=$(terraform output appservice_name_dev)
 
-        # Enami add start
+        # Enami add start 本来ここで実施するべき処理では無いが。。
         # Write the resourceGroupName variable to the pipeline.
         resourceGroupName='tailspin-space-game-terraform-rg'
         echo "##vso[task.setvariable variable=resourceGroupName;isOutput=true]$resourceGroupName"
