@@ -129,6 +129,6 @@ stages:
             inputs:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               deployToSlotOrASE: false
-              resourceGroupName：'tailspin-space-game-terraform-rg'
+              resourceGroupName: 'tailspin-space-game-terraform-rg'
               appName: '$(WebAppNameDev)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
