@@ -108,7 +108,8 @@ stages:
   - deployment: Deploy
     dependsOn: Provision
     variables:
-      WebAppNameDev: $[ dependencies.Provision.outputs['RunTerraform.WebAppNameDev'] ]
+      # Enami add "を置換して取り除く
+      WebAppNameDev: replace('$[ dependencies.Provision.outputs['RunTerraform.WebAppNameDev'] ]','""','')
     pool:
       vmImage: 'ubuntu-18.04'
     environment: dev
@@ -124,7 +125,6 @@ stages:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               deployToSlotOrASE: false
               resourceGroupName: 'tailspin-space-game-terraform-rg'
-              # appName: '$(WebAppNameDev)'
-              # appName: 'tailspin-space-game-asp'
-              appName: 'tailspin-space-game-web-dev-7211'
+              appName: '$(WebAppNameDev)'
+              # appName: 'tailspin-space-game-web-dev-7211'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
