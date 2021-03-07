@@ -96,12 +96,6 @@ stages:
         # Get the App Service name for the dev environment.
         WebAppNameDev=$(terraform output appservice_name_dev)
 
-        # # Enami add start 本来ここで実施するべき処理では無いが。。
-        # # Write the resourceGroupName variable to the pipeline.
-        # resourceGroupName='tailspin-space-game-terraform-rg'
-        # echo "##vso[task.setvariable variable=resourceGroupName;isOutput=true]$resourceGroupName"
-        # # Enami add end：
-
         # Write the WebAppNameDev variable to the pipeline.
         echo "##vso[task.setvariable variable=WebAppNameDev;isOutput=true]$WebAppNameDev"
       name: 'RunTerraform'
@@ -130,5 +124,6 @@ stages:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               deployToSlotOrASE: false
               resourceGroupName: 'tailspin-space-game-terraform-rg'
-              appName: '$(WebAppNameDev)'
+              # appName: '$(WebAppNameDev)'
+              appName: 'tailspin-space-game-asp'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
