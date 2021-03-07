@@ -110,7 +110,7 @@ stages:
     variables:
       # Enami add "を置換して取り除く
       WebAppNameDev-double-quate: $[ dependencies.Provision.outputs['RunTerraform.WebAppNameDev'] ]
-      WebAppNameDev: replace('$(WebAppNameDev-double-quate)','"','')
+      WebAppNameDev: ${{ replace('$(WebAppNameDev-double-quate)','"','')}}
     pool:
       vmImage: 'ubuntu-18.04'
     environment: dev
